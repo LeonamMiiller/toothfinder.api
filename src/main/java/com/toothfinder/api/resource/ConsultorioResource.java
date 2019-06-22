@@ -12,6 +12,7 @@ import com.toothfinder.api.repository.ConsultorioRepository;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/consultorios")
@@ -28,7 +29,7 @@ public class ConsultorioResource {
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public void inserirConsultorio(@RequestBody consultorio consultorioInserido, HttpServletResponse response){
+	public void inserirConsultorio(@Valid @RequestBody consultorio consultorioInserido, HttpServletResponse response){
 		consultorio consultCurrentID = consultorioRepository.save(consultorioInserido);
 
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{codigo}")
